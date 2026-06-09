@@ -1,0 +1,19 @@
+2.
+x0 = 0
+print(np.round(Newton(f, df, x0, epsilon), 4))
+
+3.
+Q, R, = np.linalg.qr(A)
+qr = np.linalg.solve(R, Q.transpose() @ b)
+print("QE -> a -> ", np.round(qr[0,0], 2), "b ->", np.round(qr[1,0], 2))
+
+U, s, V = np.linalg.svd(A)
+svd = V.transpose() @ sp.linalg.diagsvd(s**(-1), 2, 5) @ U.transpose() @ b
+print("SVD -> a -> ", np.round(svd[0,0], 2), "b ->", np.round(svd[1,0], 2))
+
+5.
+x = np.linspace(a, b, n)
+y = f(x)
+
+I_check = np.trapezoid(y, x)
+print('I_check =', I_check)
