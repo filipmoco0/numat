@@ -1,19 +1,20 @@
-2.
-x0 = 0
-print(np.round(Newton(f, df, x0, epsilon), 4))
+1.
+def omega0(x):
+    return (x-2)*(x-3)
+def omega1(x):
+    return (x+1)*(x-3)
+def omega2(x):
+    return (x+1)*(x-2)
 
-3.
-Q, R, = np.linalg.qr(A)
-qr = np.linalg.solve(R, Q.transpose() @ b)
-print("QE -> a -> ", np.round(qr[0,0], 2), "b ->", np.round(qr[1,0], 2))
+return y0*(omega0(x)/omega0(x0)) + y1*(omega1(x)/omega1(x1)) + y2*(omega2(x)/omega2(x2))
 
-U, s, V = np.linalg.svd(A)
-svd = V.transpose() @ sp.linalg.diagsvd(s**(-1), 2, 5) @ U.transpose() @ b
-print("SVD -> a -> ", np.round(svd[0,0], 2), "b ->", np.round(svd[1,0], 2))
+xi = np.array([x0, x1, x2])
+yi = np.array([y0, y1, y2])
 
-5.
-x = np.linspace(a, b, n)
-y = f(x)
+xp = np.linspace(x0, x2, 100)
 
-I_check = np.trapezoid(y, x)
-print('I_check =', I_check)
+plt.figure(figsize = (16, 8))
+plt.plot(xi, yi, "ro")
+plt.plot(xp, f(xp), "b")
+plt.plot(xp, p_L(xp), "g")
+plt.show()
