@@ -17,7 +17,7 @@ print("Alpha", alpha)
 print("Beta", beta)
 
 
-QR
+Lambde
 
 # TODO: provjera svojsteve vrijednosti i vektora
 print(M@v1 - lambda1 * v1)
