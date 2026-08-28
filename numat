@@ -47,7 +47,7 @@ SVD
 # np.linalg.svd()
 U, s, V = np.linalg.svd(A)
 # sp.linalg.diagsvd()
-D = sp.linalg.diagsvd(s, x, x)
+D = sp.linalg.diagsvd(s, 3, 5)
 # TODO: ispis U
 print(np.round(U, 4))
 # TODO: ispis D
@@ -57,7 +57,7 @@ print(np.round(V.T, 4))
 
 # TODO: Dplus = 
 s_inv = 1 / s
-Dplus = sp.linalg.diagsvd(s_inv, x, x)
+Dplus = sp.linalg.diagsvd(s_inv, 5, 3)
 print(Dplus)
 
 # TODO: Aplus = 
