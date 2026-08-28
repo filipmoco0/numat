@@ -1,20 +1,71 @@
-1.
-def omega0(x):
-    return (x-2)*(x-3)
-def omega1(x):
-    return (x+1)*(x-3)
-def omega2(x):
-    return (x+1)*(x-2)
+# TODO: QR dekompozicija
+#np.linalg.qr()
+Q, R = np.linalg.qr(A)
 
-return y0*(omega0(x)/omega0(x0)) + y1*(omega1(x)/omega1(x1)) + y2*(omega2(x)/omega2(x2))
+print(np.round(Q, 3))
+print()
 
-xi = np.array([x0, x1, x2])
-yi = np.array([y0, y1, y2])
+print(np.round(R, 3))
+print()
 
-xp = np.linspace(x0, x2, 100)
+x = np.linalg.solve(R, Q.T@b)
+print(x)
+print()
 
-plt.figure(figsize = (16, 8))
-plt.plot(xi, yi, "ro")
-plt.plot(xp, f(xp), "b")
-plt.plot(xp, p_L(xp), "g")
-plt.show()
+alpha, beta = x[0], x[1]
+print("Alpha", alpha)
+print("Beta", beta)
+
+
+QR
+
+# TODO: provjera svojsteve vrijednosti i vektora
+print(M@v1 - lambda1 * v1)
+# TODO: provjera svojsteve vrijednosti i vektora
+print(M@v2 - lambda2 * v2)
+# TODO: provjera dekompozicije
+print(Pinv@P)
+print(np.round(M - P@D@Pinv, 4))
+
+# Izračun M^n pomoću PDP^-1:
+# TODO: Dn = 
+D8 = np.array([[1, 0],
+               [0, 0]])
+print(D8)
+# TODO: Mn = 
+# print(Mn)
+M8 = P@D8@Pinv
+print(M8)
+
+validation = True
+
+
+SVD
+
+
+# TODO: SVD
+# np.linalg.svd()
+U, s, V = np.linalg.svd(A)
+# sp.linalg.diagsvd()
+D = sp.linalg.diagsvd(s, x, x)
+# TODO: ispis U
+print(np.round(U, 4))
+# TODO: ispis D
+print(np.round(D, 4))
+# TODO: ispis V^T
+print(np.round(V.T, 4))
+
+# TODO: Dplus = 
+s_inv = 1 / s
+Dplus = sp.linalg.diagsvd(s_inv, x, x)
+print(Dplus)
+
+# TODO: Aplus = 
+Aplus = V.T @ Dplus @ U.T
+# TODO: provjera1
+provjera1 = Aplus@A@Aplus-Aplus
+print(np.round(provjera1,4))
+# TODO: provjera2
+provjera2 = A@Aplus@A-A
+print(np.round(provjera2,4))
+validation = True
